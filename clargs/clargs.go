@@ -9,14 +9,16 @@ import (
 
 var usage string
 var options []*Option
+var args []string
 
-func Init(u string, opts []*Option) {
+func Init(u string, opts []*Option, a []string) {
 	usage = u
 	options = opts
+	args = a
 	usage += getUsageOptions()
 }
 
-func CheckArgs(args []string, options []*Option) {
+func CheckArgs() {
 	if len(args) == 0 {
 		PrintUsage()
 		os.Exit(1)
@@ -45,7 +47,7 @@ func CheckArgs(args []string, options []*Option) {
 }
 
 func PrintUsage() {
-	fmt.Println()
+	fmt.Println(usage)
 }
 
 func getParameterValue(slice []string, parameter string) string {
