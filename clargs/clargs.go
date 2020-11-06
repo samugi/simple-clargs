@@ -29,7 +29,7 @@ func CheckArgs() {
 		if parameterValue == "" {
 			parameterValue = getParameterValue(args, o.LongOption)
 		}
-		if o.HasArgs && parameterValue == "" {
+		if findOptionInArgs(o, args) && o.HasArgs && parameterValue == "" {
 			fmt.Println("No value passed for: " + o.LongOption)
 			PrintUsage()
 			os.Exit(1)
