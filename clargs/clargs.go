@@ -29,17 +29,15 @@ func CheckArgs() {
 		if parameterValue == "" {
 			parameterValue = getParameterValue(args, o.LongOption)
 		}
-		if o.Required {
-			if o.HasArgs && parameterValue == "" {
-				PrintUsage()
-				os.Exit(1)
-				return
-			}
-			if !findOptionInArgs(o, args) {
-				PrintUsage()
-				os.Exit(1)
-				return
-			}
+		if o.HasArgs && parameterValue == "" {
+			PrintUsage()
+			os.Exit(1)
+			return
+		}
+		if o.Required && !findOptionInArgs(o, args) {
+			PrintUsage()
+			os.Exit(1)
+			return
 		}
 		options[i].SetValue(parameterValue)
 		options[i].SetValueB(findOptionInArgs(o, args))
